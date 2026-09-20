@@ -1346,7 +1346,96 @@ body, .gradio-container {
 .gradio-container .gr-markdown li {
     color: #475569 !important;
 }
+
+/* =========================================================
+   TRIP & SEARCH SETTINGS - TARGETED INPUT STYLING
+   ========================================================= */
+
+/* Ensure the settings card and all child block containers are light-themed */
+.right-sidebar-col .right-card,
+.right-sidebar-col .right-card .block,
+.right-sidebar-col .right-card fieldset,
+.right-sidebar-col .right-card .form,
+.right-sidebar-col .right-card .wrap,
+.right-sidebar-col .right-card label {
+    --block-background-fill: #FFFFFF !important;
+    --input-background-fill: #F8FAFC !important;
+    --input-text-color: #0F172A !important;
+    --body-text-color: #0F172A !important;
+    --block-label-text-color: #1E293B !important;
+    --border-color-primary: #CBD5E1 !important;
+    --input-border-color: #CBD5E1 !important;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    box-shadow: none !important;
+}
+
+/* Labels for Latitude, Longitude, Range, Radius */
+.right-sidebar-col .right-card label,
+.right-sidebar-col .right-card label span,
+.right-sidebar-col .right-card span[data-testid="block-info"],
+.right-sidebar-col .right-card .block-info,
+.right-sidebar-col .right-card .block-label {
+    color: #1E293B !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    background: transparent !important;
+    margin-bottom: 4px !important;
+    display: inline-block !important;
+}
+
+/* The actual input fields for Latitude, Longitude, Range, and Radius */
+.right-sidebar-col .right-card input[type="number"],
+.right-sidebar-col .right-card input[data-testid="number-input"],
+.right-sidebar-col .right-card .block input[type="number"],
+.right-sidebar-col .right-card .gradio-number input {
+    display: block !important;
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    box-sizing: border-box !important;
+    padding: 8px 12px !important;
+    background: #F8FAFC !important;
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
+    border: 1.5px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-shadow: none !important;
+}
+
+/* Hover & Focus states */
+.right-sidebar-col .right-card input[type="number"]:hover,
+.right-sidebar-col .right-card input[data-testid="number-input"]:hover {
+    border-color: #94A3B8 !important;
+}
+
+.right-sidebar-col .right-card input[type="number"]:focus,
+.right-sidebar-col .right-card input[data-testid="number-input"]:focus {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
+    border-color: #5B48E0 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(91, 72, 224, 0.15) !important;
+}
+
+/* Placeholder text */
+.right-sidebar-col .right-card input[type="number"]::placeholder,
+.right-sidebar-col .right-card input[data-testid="number-input"]::placeholder {
+    color: #64748B !important;
+    opacity: 1 !important;
+    font-weight: 500 !important;
+}
 """
+
 
 def create_demo():
     if gr is None:
