@@ -1399,43 +1399,49 @@ body, .gradio-container {
     color: #475569 !important;
 }
 
-/* ---- Final fix: Gradio Number input containers ---- */
+/* ---- FINAL: Make Trip & Search input fields visible ---- */
 
-.right-sidebar-col .right-card .gr-input,
-.right-sidebar-col .right-card .input-container,
-.right-sidebar-col .right-card .wrap,
-.right-sidebar-col .right-card .container,
-.right-sidebar-col .right-card .block {
-    background: #FFFFFF !important;
-    color: #0F172A !important;
-    opacity: 1 !important;
-}
-
-/* Number input outer boxes */
 .right-sidebar-col .right-card input[type="number"] {
-    background: #F8FAFC !important;
+    display: block !important;
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 8px 12px !important;
+
+    background-color: #F8FAFC !important;
     color: #0F172A !important;
     -webkit-text-fill-color: #0F172A !important;
+
+    border: 1.5px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Gradio's input wrapper */
+.right-sidebar-col .right-card .input-container {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 42px !important;
+    background: #F8FAFC !important;
     border: 1px solid #CBD5E1 !important;
-    opacity: 1 !important;
+    border-radius: 10px !important;
 }
 
-/* Labels specifically inside the settings card */
-.right-sidebar-col .right-card span[data-testid="block-info"],
-.right-sidebar-col .right-card label {
+/* Keep labels visible */
+.right-sidebar-col .right-card span[data-testid="block-info"] {
+    display: block !important;
     color: #1E293B !important;
-    -webkit-text-fill-color: #1E293B !important;
-    opacity: 1 !important;
     font-weight: 600 !important;
+    opacity: 1 !important;
 }
 
-/* Remove dark theme from the input field area */
-.right-sidebar-col .right-card [data-testid="textbox"],
-.right-sidebar-col .right-card [data-testid="number"] {
-    background: #FFFFFF !important;
-    color: #0F172A !important;
-    opacity: 1 !important;
+/* Spacing between settings fields */
+.right-sidebar-col .right-card .gradio-number {
+    margin-bottom: 10px !important;
 }
+
 """
 
 with gr.Blocks(title="⚡ ChargeMate — EV Charging Assistant") as demo:
