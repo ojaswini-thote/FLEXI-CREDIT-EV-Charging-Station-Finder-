@@ -1626,10 +1626,7 @@ if __name__ == "__main__":
     if gr is not None:
         demo_app = create_demo()
         demo_app.launch(
-            theme=gr.themes.Soft(primary_hue="purple", neutral_hue="slate"),
             server_name="0.0.0.0",
-            server_port=int(os.environ.get("PORT", 7860)),
+            server_port=int(os.environ.get("PORT", 10000)),
             share=False
         )
-
-
