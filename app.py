@@ -1625,6 +1625,11 @@ if __name__ == "__main__":
             sys.exit(1)
     if gr is not None:
         demo_app = create_demo()
-        demo_app.launch(theme=gr.themes.Soft(primary_hue="purple", neutral_hue="slate"), server_name="0.0.0.0", share=False)
+        demo_app.launch(
+            theme=gr.themes.Soft(primary_hue="purple", neutral_hue="slate"),
+            server_name="0.0.0.0",
+            server_port=int(os.environ.get("PORT", 7860)),
+            share=False
+        )
 
 
