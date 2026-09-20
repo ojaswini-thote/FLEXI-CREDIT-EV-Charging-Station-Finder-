@@ -1092,6 +1092,65 @@ body, .gradio-container {
     box-shadow: var(--shadow-card);
     margin-bottom: 14px;
 }
+/* ---- Right Settings Gradio Group readability fix ---- */
+
+.right-sidebar-col .right-card {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    opacity: 1 !important;
+}
+
+.right-sidebar-col .right-card > div,
+.right-sidebar-col .right-card .block,
+.right-sidebar-col .right-card .form,
+.right-sidebar-col .right-card .row {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    opacity: 1 !important;
+}
+
+/* Settings labels */
+.right-sidebar-col .right-card label,
+.right-sidebar-col .right-card label span,
+.right-sidebar-col .right-card span[data-testid="block-info"] {
+    color: #1E293B !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+}
+
+/* Settings input boxes */
+.right-sidebar-col .right-card input,
+.right-sidebar-col .right-card textarea {
+    color: #0F172A !important;
+    background: #F8FAFC !important;
+    border: 1px solid #94A3B8 !important;
+    opacity: 1 !important;
+}
+
+/* Placeholder / helper text */
+.right-sidebar-col .right-card input::placeholder,
+.right-sidebar-col .right-card textarea::placeholder {
+    color: #64748B !important;
+    opacity: 1 !important;
+}
+
+/* ---- Left sustainability card readability ---- */
+
+.sidebar-eco-card {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    opacity: 1 !important;
+}
+
+.sidebar-eco-card h3 {
+    color: #0F172A !important;
+    opacity: 1 !important;
+}
+
+.sidebar-eco-card p {
+    color: #374151 !important;
+    opacity: 1 !important;
+}
 
 .right-card-title {
     display: flex;
