@@ -1611,4 +1611,4 @@ if __name__ == "__main__":
             print("Fix this before your demo,")
             print("run on the rule-based fallback instead of the LLM.")
             sys.exit(1)
-    demo.launch(theme=gr.themes.Soft(primary_hue="purple", neutral_hue="slate"), server_name="0.0.0.0", share=False)
+    demo.launch(server_name="0.0.0.0",server_port=int(os.environ.get("PORT", 10000)),share=False)
