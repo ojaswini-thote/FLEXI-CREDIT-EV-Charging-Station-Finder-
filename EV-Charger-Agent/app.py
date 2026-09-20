@@ -267,8 +267,12 @@ class IntentAgent:
         power_match = re.search(r"(\d+)\s*kw", t)
         min_power = float(power_match.group(1)) if power_match else None
 
+        radius_match = re.search(r"(?:within|radius(?:\s+of)?|in)\s+(\d+(?:\.\d+)?)\s*(?:km|kms|kilometers?)", t) or re.search(r"(\d+(?:\.\d+)?)\s*(?:km|kms|kilometers?)\s*(?:radius)?", t)
+        search_radius = float(radius_match.group(1)) if radius_match else None
+
         return {"intent": "find_charger", "priority": priority, "connector_type": connector,
-                 "min_power_kw": min_power, "_source": "rules", "_backend": "rules"}
+                 "min_power_kw": min_power, "search_radius_km": search_radius, "_source": "rules", "_backend": "rules"}
+
 
 
 # --------------------------------------------------------------------------
@@ -1392,30 +1396,39 @@ body, .gradio-container {
     color: #475569 !important;
 }
 /* =========================================================
-   TRIP & SEARCH SETTINGS - TARGETED INPUT STYLING
+   TRIP & SEARCH SETTINGS - CLEAR VISIBLE INPUT STYLING
    ========================================================= */
 
-/* Trip & Search Settings card containers */
-.right-sidebar-col .right-card,
-.right-sidebar-col .right-card fieldset,
-.right-sidebar-col .right-card .block,
-.right-sidebar-col .right-card .form,
-.right-sidebar-col .right-card .wrap,
-.right-sidebar-col .right-card label {
-    --block-background-fill: #FFFFFF !important;
-    --input-background-fill: #F8FAFC !important;
-    --input-text-color: #0F172A !important;
-    --body-text-color: #0F172A !important;
-    --block-label-text-color: #1E293B !important;
-    --border-color-primary: #CBD5E1 !important;
-    --input-border-color: #CBD5E1 !important;
+/* Ensure the settings card is a clean white container */
+.right-sidebar-col .right-card {
     background: #FFFFFF !important;
     background-color: #FFFFFF !important;
     color: #0F172A !important;
-    box-shadow: none !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 18px !important;
+    padding: 16px !important;
 }
 
-/* Labels for Latitude, Longitude, Range, Radius */
+/* Make block containers transparent with clean vertical spacing */
+.right-sidebar-col .right-card .block,
+.right-sidebar-col .right-card fieldset,
+.right-sidebar-col .right-card .form,
+.right-sidebar-col .right-card .wrap,
+.right-sidebar-col .right-card .input-container,
+.right-sidebar-col .right-card .gradio-number {
+    --block-background-fill: transparent !important;
+    --input-background-fill: #F8FAFC !important;
+    --input-text-color: #0F172A !important;
+    --border-color-primary: #CBD5E1 !important;
+    --input-border-color: #CBD5E1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 8px !important;
+}
+
+/* Bold dark labels with spacing above input */
 .right-sidebar-col .right-card label,
 .right-sidebar-col .right-card label span,
 .right-sidebar-col .right-card span[data-testid="block-info"],
@@ -1426,15 +1439,14 @@ body, .gradio-container {
     font-weight: 700 !important;
     opacity: 1 !important;
     background: transparent !important;
-    margin-bottom: 4px !important;
-    display: inline-block !important;
+    margin-bottom: 5px !important;
+    display: block !important;
 }
 
-/* The actual HTML input elements for Latitude, Longitude, Range, and Radius */
+/* Distinct, bordered input boxes for Latitude, Longitude, Range, and Radius */
 .right-sidebar-col .right-card input[type="number"],
 .right-sidebar-col .right-card input[data-testid="number-input"],
-.right-sidebar-col .right-card .block input,
-.right-sidebar-col .right-card label input,
+.right-sidebar-col .right-card .block input[type="number"],
 .right-sidebar-col .right-card .gradio-number input {
     display: block !important;
     width: 100% !important;
@@ -1452,13 +1464,15 @@ body, .gradio-container {
     font-weight: 600 !important;
     opacity: 1 !important;
     visibility: visible !important;
-    box-shadow: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.15s ease-in-out !important;
 }
 
-/* Focus and Hover states */
+/* Hover & Focus state */
 .right-sidebar-col .right-card input[type="number"]:hover,
 .right-sidebar-col .right-card input[data-testid="number-input"]:hover {
     border-color: #94A3B8 !important;
+    background-color: #FFFFFF !important;
 }
 
 .right-sidebar-col .right-card input[type="number"]:focus,
@@ -1470,7 +1484,7 @@ body, .gradio-container {
     -webkit-text-fill-color: #0F172A !important;
     border-color: #5B48E0 !important;
     outline: none !important;
-    box-shadow: 0 0 0 3px rgba(91, 72, 224, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(91, 72, 224, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Placeholder text */
@@ -1480,6 +1494,7 @@ body, .gradio-container {
     opacity: 1 !important;
     font-weight: 500 !important;
 }
+
 
 
 """
